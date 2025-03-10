@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVSR Student Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ccecf5;
+    }
+    .header {
+      background-color: #052963;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 1rem;
+      font-size: 20px;
+      font-weight: bold;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .header img {
+      width: 230px;
+      height: 230px;
+      margin-right: 20px;
+      margin-left: 10px;
+      color: #f5f5f5;
+    }
+    .header-text {
+      flex: 1;
+      text-align: center;
+    }
+
+    .navbar {
+      background-color: #1e3c72;
+      padding: 1rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      font-weight: bold;
+      height: 23px;
+     
+    }
+    .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+    .navbar a {
+      color: #f5a623;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+  .navbar input {
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+      font-size: 20px;
+    }
+  .text-marquee1 {
+  background-color: white; 
+  color: red;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+  .text-marquee2 {
+  background-color: black; 
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.image-marquee {
+  background: linear-gradient(90deg, black); 
+  padding: 15px;
+  border-radius: 10px;
+  background-color: ccecf5;
+  
+}
+
+.image-marquee img {
+  width: auto; 
+  height: 180px; 
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(41, 11, 11, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-marquee img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
+
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 40px auto;
+  overflow: hidden;
+  border-radius: 50px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  min-height: auto;
+}
+
+/* Slides Wrapper */
+.slides {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+/* Individual Slide Image */
+.slides img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+.container {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));  /* Increased card size */
+  gap: 150px;
+  width: 50%;  /* Reduced width for better centering */
+  max-width: 1000px;  /* Increased max width */
+  margin: 60px auto;  /* Center the container vertically */
+  align-items: center;  /* Align items vertically */
+  justify-content: center;  /* Align items horizontally */
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 23px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);  /* Slightly stronger shadow */
+  padding: 40px 30px ;  /* Increased padding */
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 300px;  /* Increased width */
+  height: 200px;  /* Increased height */
+  padding-bottom: 50px;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+}
+
+.card:hover {
+  transform: translateY(-10px);  /* Smoother hover effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card i {
+  font-size: 80px;  /* Bigger icons */
+  color: #4a90e2;
+  margin-bottom: 18px;
+}
+
+.card p {
+  font-size: 28px;  /* Increased font size */
+  color: #333;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+    
+    .main_footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #052963;
+    padding: 40px;
+    color: white;
+    flex-wrap: wrap; 
+  }
+
+  .main_footer h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #f5a623;
+    padding-bottom: 5px;
+  }
+
+  .footer_section {
+    background-color: #1e3c72;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 300px;
+    display: inline-block;
+    font-size: 18px;
+  }
+
+  .footer_section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .footer_section li {
+    margin-bottom: 10px;
+  }
+
+  .footer_section a {
+    text-decoration: none;
+    color: #f5f5f5;
+    transition: color 0.3s ease;
+  }
+
+  .footer_section a:hover {
+    color: #f5a623;
+  }
+    .footer {
+      background-color: #283d63;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      line-height: normal;
+    }
+
+    .map {
+      width: 100%;
+      height: 400px;
+      border: 0;
+    }
+    .floor{
+      color: rgb(249, 249, 249);
+      display: flex;
+      justify-content: center;
+      padding-left: 10px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 18px;
+    }
+    h5{
+      margin-bottom: 1px;
+      margin-left: 10px;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .map-section {
+    text-align: center;
+    background-color: #3e557a; /* Background for the entire section */
+    padding: 40px;
+  }
+
+  .map {
+    display: inline-block;
+    width: 600px;
+    height: 400px;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    vertical-align: top; /* Aligns with the footer section */
+  }
+
+  .footer1_section {
+    display: inline-block;
+    width: 500px;
+    background-color:rgb(45, 72, 105); /* Darker background */
+    padding: 20px;
+    margin-left: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: left;
+    vertical-align: top;
+    font-size: 18px;
+  }
+
+  .footer1_section h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 2px solid #f5a623;
+    padding-bottom: 5px;
+  }
+
+  .footer1_section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .footer1_section li {
+    margin-bottom: 10px;
+  }
+
+  .footer1_section a {
+    text-decoration: none;
+    color:rgb(240, 231, 231);
+    transition: color 0.3s ease;
+  }
+
+  .footer1_section a:hover {
+    color: #f5a623; /* Highlight on hover */
+  }
+
+  @media screen and (max-width: 768px) {
+    .map, .footer1_section {
+      display: block;
+      width: 100%;
+      margin: 20px 0; /* Spacing for smaller screens */
+    }
+  }
+
+  .aa{
+  gap: 50px;
+  border: 2px solid rgb(146, 141, 141);
+  box-shadow: 2px 4px 10px black;
+  background-color: rgb(208, 235, 242);
+  margin-right: 30px;
+  margin-left: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+    justify-content: space-around;
+    background-color: #fbfbfb;
+    padding: 40px;
+    color: white;
+    flex-wrap: wrap; 
+    width: 85%;
+  margin: 50px auto;
+}
+/* Panel Styling */
+.uk-panel-box {
+  background-color: #1e3a8a;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow:5px 8px 30px rgba(24, 23, 23, 0.15);
+  color: #f1f5f9;
+  max-width: 500px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+  
+}
+
+/* Heading */
+.awards-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+/* Marquee Styling */
+.awards-scroll {
+  height: 200px;
+  overflow: hidden;
+  padding: 10px;
+  border: 2px solid #2563eb;
+  border-radius: 10px;
+  background-color: #1e40af;
+}
+
+/* Awards list */
+.awards-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.awards-list li {
+  padding: 12px 10px;
+  border-bottom: 1px solid #3b82f6;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.awards-list li a {
+  color: #e0f2fe;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.awards-list li a:hover {
+  color: #0ea5e9;
+}
+
+/* View All Link */
+.view-all-awards {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #facc15;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.view-all-awards:hover {
+  color: #fde047;
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .uk-panel-box {
+    padding: 15px;
+  }
+
+  .awards-title {
+    font-size: 20px;
+  }
+
+  .awards-list li {
+    font-size: 20px;
+  }
+}
+
+
+/* News Events Container */
+.news-events1 {
+  background: #1e3a8a;
+  border-radius: 16px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  height: 300px;
+  margin: 20px auto;
+  border: 2px solid ffffff;
+  color: whitesmoke;
+  
+}
+
+/* Section Title */
+.section-title1 {
+  font-size: 20px;
+  color: #fdfdfd;
+  margin-bottom: 15px;
+  text-align: center;
+  position: relative;
+  font-weight: bold;
+}
+
+/* Scrollable News Section */
+.news-scroll1 {
+  height: 200px;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.news-list1 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-list1 li {
+  padding: 12px 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 18px;
+  color: rgb(225, 214, 214);
+}
+
+/* Hover Effect */
+.news-list1 li:hover {
+  background: #f0f9f7;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+/* Link Styling */
+.news-list1 a {
+  text-decoration: none;
+  color: #f2f5f8;
+  font-weight: 500px;
+  font-size: 18px;
+}
+
+.news-list1 a:hover {
+  color: #1abc9c;
+}
+
+/* Main container styling */
+.news_events_1 {
+  background-color: #1e3a8a;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  color: #f1f5f9;
+  max-width: 500px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Title styling */
+.achievements-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: 2c3e50;
+  margin-bottom: 15px;
+}
+
+/* Marquee scrolling box */
+.achievements-scroll {
+  height: 250px;
+  overflow: hidden;
+  padding: 10px;
+  border: 2px solid #2563eb;
+  border-radius: 10px;
+  background-color: #1e40af;
+}
+
+/* List styling */
+.achievements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievements-list li {
+  padding: 12px 10px;
+  border-bottom: 1px solid #3b82f6;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.achievements-list li a {
+  color: #e0f2fe;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.achievements-list li a:hover {
+  color: #38bdf8;
+}
+
+/* View all achievements link */
+.view-all {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #facc15;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.view-all:hover {
+  color: #fde047;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .news_events_1 {
+    padding: 15px;
+  }
+
+  .achievements-title {
+    font-size: 22px;
+  }
+
+  .achievements-list li {
+    font-size: 14px;
+  }
+}
+
+
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* College Profile Container */
+.college-profile {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #dfe9f3);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow:5px 8px 30px rgba(24, 23, 23, 0.15);
+  width: 60%;
+  margin: 50px auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #d1cccc;
+}
+
+/* Hover Effect */
+.college-profile:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Video Embed Styling */
+.video-embed {
+  width: 90%;
+  max-width: 1200px;
+  height: 700px;
+  margin: 30px auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ffffff;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Hover effect for video */
+.video-embed:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* Iframe Styling */
+.video-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+}
+
+/* Section Headings */
+.college-profile h2 {
+  font-size: 25px;
+  color: #2563eb;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: slideIn 0.8s ease-in-out;
+}
+
+/* Paragraph Styling */
+.college-profile p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #4a4a4a;
+  margin-bottom: 25px;
+  width: 90%;
+}
+
+/* Mission List Styling */
+.mission-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  width: 85%;
+}
+
+.mission-list li {
+  margin-bottom: 15px;
+  font-size: 18px;
+  position: relative;
+  padding-left: 35px;
+  color: #34495e;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+/* Custom Bullet Icon */
+.mission-list li::before {
+  content: "🌟";
+  position: absolute;
+  left: 0;
+  font-size: 25px;
+  color: #1abc9c;
+}
+
+/* Brochure Link */
+.brochure-link a {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1abc9c, #16a085);
+  color: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 20px;
+}
+
+.brochure-link a:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #16a085, #149174);
+}
+
+/* Read More Button */
+.uk-button-info {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.uk-button-info:hover {
+  transform: scale(1.05);
+  background-color: #1e4bb8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.top-right {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: x-large;
+            font-weight:bolder;
+            color: white;
+            /*background-color: #f8f9fa;*/
+            padding: 10px;
+            border-radius: 5px;
+            
+        }
+        
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="mvsrlogo.png" alt="MVSR Logo">
+    <div class="header-text">
+      <h2>Maturi Venkata Subba Rao (MVSR) Engineering College</h2>
+      (An Autonomous Institute) <br>
+      Counselling Code EAMCET/ECET/ICET: MVSR <br>
+      NBA Accredited Courses: Civil, CSE, IT, ECE, EEE, MECH
+    </div>
+  </div>
+
+
+  {% if student %}
+        <div class="top-right">
+            <p>{{ student.Name }} <br>{{ student.Rollno }}<br>{{student.Branch}} - {{student.Semester}}</p>
+        </div>
+    {% endif %}
+
+  <div class="navbar">
+    <div>
+      
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <input type="text" placeholder="Search...">
+  </div>
+  <marquee class="text-marquee1" behavior="scroll" direction="left" scrollamount="10s" onmouseover="this.stop();" onmouseout="this.start();">
+   shiva</marquee>
+  <marquee class="text-marquee2" behavior="scroll" direction="left" scrollamount="30s" onmouseover="this.stop();" onmouseout="this.start();">
+    Latest Updates: Admissions Open | New Courses Announced | Exam Schedules Updated
+  </marquee>
+  <marquee class="image-marquee" behavior="scroll" direction="right" scrollamount="20s" onmouseover="this.stop();" onmouseout="this.start();">
+    <img src="cyi.jpg" alt="Campus View 1" width="200" height="100" style="margin-right: 30px;">
+    <img src="di.jpg" alt="Campus View 2" width="200" height="100" style="margin-right: 30px;">
+    <img src="ctr.jpg" alt="Campus View 3" width="200" height="100" style="margin-right: 30px;">
+    <img src="cog.png" alt="Campus View 4" width="200" height="100" style="margin-right: 30px;">
+    <img src="cap.jpg" alt="Campus View 5" width="200" height="100" style="margin-right: 30px;">
+    <img src="ashoka.jpg" alt="Campus View 6" width="200" height="100" style="margin-right: 30px;">
+    <img src="app.jpg" alt="Campus View 3" width="200" height="100" style="margin-right: 30px;">
+    <img src="amd.jpg" alt="Campus View 4" width="200" height="100" style="margin-right: 30px;">
+    <img src="aa.jpg" alt="Campus View 1" width="200" height="100" style="margin-right: 30px;">
+    <img src="AARVEE.jpg" alt="Campus View 2" width="200" height="100" style="margin-right: 30px;">
+    <img src="aa.jpg" alt="Campus View 3" width="200" height="100" style="margin-right: 30px;">
+    <img src="infosysjpeg.jpeg" alt="Campus View 4" width="200" height="100" style="margin-right: 30px;">
+    <img src="ibm.png" alt="Campus View 5" width="200" height="100" style="margin-right: 30px;">
+    <img src="cisco.png" alt="Campus View 6" width="200" height="100" style="margin-right: 30px;">
+  </marquee>
+
+
+  <div class="slider">
+    <div class="slides" id="slideShow">
+      <img src="college1.jpg" alt="Image 1">
+      <img src="college2.jpg" alt="Image 2">
+      <img src="college3.jpg" alt="Image 3">
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="card" onclick="navigate('fee.html')">
+        <i class="fas fa-credit-card"></i>
+        <p>Fee Payment</p>
+    </div>
+    <div class="card" onclick="navigate('attendance.html')">
+        <i class="fas fa-check-circle"></i>
+        <p>Attendance</p>
+    </div>
+    <div class="card" onclick="navigate('syllabus.html')">
+        <i class="fas fa-book"></i>
+        <p>Syllabus</p>
+    </div>
+    <div class="card" onclick="navigate('assignments.html')">
+        <i class="fas fa-tasks"></i>
+        <p>Assignments</p>
+    </div>
+    <div class="card" onclick="navigate('events.html')">
+        <i class="fas fa-calendar-alt"></i>
+        <p>Events</p>
+    </div>
+    <div class="card" onclick="navigate('notifications.html')">
+        <i class="fas fa-bell"></i>
+        <p>Exam Notifications</p>
+    </div>
+    <div class="card" onclick="navigate('faculty.html')">
+        <i class="fas fa-users"></i>
+        <p>Faculty Info</p>
+    </div>
+    <div class="card" onclick="navigate('timetable.html')">
+        <i class="fas fa-clock"></i>
+        <p>Time Table</p>
+    </div>
+    <div class="card" onclick="navigate('results.html')">
+        <i class="fas fa-chart-bar"></i>
+        <p>Results</p>
+    </div>
+</div>
+
+
+<div class="aa">
+<div class="uk-panel uk-panel-box">
+  <div class="bottom-a-30">
+    <div class="news_events">
+      <div class="news_events_2">
+        <h3 class="awards-title">Awards</h3>
+
+        <!-- Scrolling marquee -->
+        <marquee behavior="scroll" direction="up" scrollamount="3" class="awards-scroll" onmouseover="this.stop();" onmouseout="this.start();">
+          <ul class="awards-list">
+            <li><a href="https://www.mvsrec.edu.in/index.php?option=com_content&amp;view=article&amp;id=1806">MVSREC won 8 awards in 5 categories of CSI-HYDERABAD Chapter Excellence Awards 2023</a></li>
+            <li>MVSR Team K.Abhishek (CSE) &amp; K.Karthikeya (CSE) mentored by Dr. Akhil Khare (Prof. in CSE) awarded in Top-10 at IIT-Bombay’s e-Yantra Innovation Challenge 2023</li>
+            <li>MVSREC Team ELITEEE winners of Smart India Hackathon 2022 @ KPRIET, Coimbatore</li>
+            <li>Dr. D. Sirisha, Asst. Prof., CSED, MVSREC - Winner of Dare to Dream Innovation Contest 2.0, felicitated by Hon. Defence Minister Shri Rajnath Singh</li>
+            <li>IEEE-MVSR bags 3 awards in 2020 presented by IEEE Hyderabad Chapter</li>
+            <li><a href="https://csimvsr.blogspot.com/2020/01/our-student-branch-bags-8-prestigious.html" target="_blank">CSI-MVSR Student Branch Bags 8 Prestigious National Awards</a></li>
+            <li><a href="/index.php?option=com_content&amp;view=article&amp;layout=edit&amp;id=1407" target="_blank">AIR 10th Rank in SAE BAJA-2019</a></li>
+            <li><a href="/index.php?option=com_content&amp;view=article&amp;layout=edit&amp;id=1409" target="_blank">SAE Efficycle-2018 Awards</a></li>
+            <li><a href="/index.php?option=com_content&amp;view=article&amp;layout=edit&amp;id=1410" target="_blank">IEEE - Best Outreach Award</a></li>
+            <li><a href="/index.php?option=com_content&amp;view=article&amp;layout=edit&amp;id=1412" target="_blank">11th SAE-Convention Awards</a></li>
+          </ul>
+        </marquee>
+
+        <!-- Optional: View all awards link -->
+        <a href="#" class="view-all-awards" target="_blank">All Awards</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- News Section -->
+<div class="news-events1">
+  <h3 class="section-title1">📢 Latest News</h3>
+  <marquee behavior="scroll" direction="up" scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();">
+    <div class="news-scroll1">
+      <ul class="news-list1">
+        <li><a href="https://internshala.com/i/SDC-DB-34124" target="_blank">🏆 Skill Development Scholarship for top 10 rankers of MVSR Engineering College</a></li>
+        <li><a href="#">📊 MVSREC ranks 5th in the state as per July 2021 Times Engineering Rankings</a></li>
+        <li><a href="https://youtu.be/TCsKlT2hqaY" target="_blank">🧵 Sewing Machine Project by Street Cause MVSREC featured on I News TV Channel</a></li>
+        <li><a href="https://drive.google.com/file/d/19jRJNLdBUxUfBJbqvOZgvpWjo0MG83Nj/view?usp=sharing" target="_blank">📚 Operating Manuals for AICTE Pragati and Saksham Schemes</a></li>
+        <li><a href="https://storage.googleapis.com/uniquecourses/online.html" target="_blank">💻 MHRD - SWAYAM & ICT Initiatives for FREE ONLINE digital course content</a></li>
+      </ul>
+    </div>
+  </marquee>
+</div>
+
+
+
+
+
+
+<div class="news_events_1">
+  <h3 class="achievements-title">Achievements</h3>
+
+  <!-- Marquee for scrolling -->
+  <marquee behavior="scroll" direction="up" scrollamount="3" class="achievements-scroll" onmouseover="this.stop();" onmouseout="this.start();">
+    <ul class="achievements-list">
+      <li>286 students of MVSREC completed CISCO-AICTE-NASSCOM FutureSkills PRIME Virtual internship program in Cyber Security from 01 Apr - 15 May 2021</li>
+      <li>
+        Dr. Nallella Srinivas, PED, MVSREC authored a book titled: 
+        <strong>Sports Psychological Applications for Football &amp; Hockey Players</strong><br>
+        Released by: Prof. D. Ravinder Yadav, Vice Chancellor, Osmania University
+      </li>
+      <li>CSE Students Meghana Reddy &amp; Kannareddy Sathwika Reddy secure CISCO 14.95 Lakh Package with 60K Full-time Internship</li>
+      <li>Appreciation from ACM Headquarters for inaugural year efforts of MVSR ACM Student Chapter</li>
+      <li>
+        <a href="https://www.newindianexpress.com/cities/hyderabad/2020/apr/08/hyderabad-youngsters-create-additional-protective-gear-2127119.html" target="_blank">
+          2019 ME Alumni created corona protective gear - Start-up: Daava 3D Printing Services
+        </a>
+      </li>
+      <li>EEE VI Sem Students secured 1st place in Technocity (Project Expo) during Techsonance 2k20</li>
+      <li>Team Egnitors won multiple events and ₹50,000 cash prize at FMEA India 2020</li>
+      <li>MVSR women’s Kabaddi team secured second place in Rudrasandhaan 2020</li>
+      <li>Winners of ELAN NVISION at IIT-Hyderabad National Student Competition with cash prizes</li>
+      <li>MVSR Taekwondo team won 1 Gold, 1 Silver, and 1 Bronze at Osmania University</li>
+      <li>Winners of Maths Olympiad: T. Adithyavardhan (IT-2), T. Rithvik Reddy (ECE-3), Sai Vineeth (ECE-2)</li>
+      <li>A. Bhavani (MBA-1) secured third place at All India Inter-University Qwan Ki Do Tournament</li>
+      <li><a href="/index.php?option=com_content&amp;view=article&amp;layout=edit&amp;id=1414" target="_blank">Congratulations Fazeel Usmani - Google invitee</a></li>
+    </ul>
+  </marquee>
+
+  <!-- View all achievements link -->
+  <a href="https://www.mvsrec.edu.in/index.php?option=com_content&amp;view=article&amp;id=1739" target="_blank" class="view-all">All Awards &amp; Achievements</a>
+</div>
+</div>
+
+
+
+
+
+  <!-- College Profile Section -->
+  <div class="college-profile">
+    <div class="video-embed">
+      <iframe src="https://drive.google.com/file/d/12zGf2ttZkiewnBLxE76TJJyP3nwfW-B5/preview" frameborder="0"  width="1000" height="600"allowfullscreen></iframe>
+    </div>
+  
+    <h2>College Profile</h2>
+    <p>Maturi Venkata Subba Rao (MVSR) Engineering College was established in 1981 with affiliation to Osmania University. Currently, the college has B.E programs in Civil, CSE, ECE, EEE, IT, Mechanical and Automobile Engineering, PG programs in CSE, ECE and Mechanical besides MBA. This college has been recognized by Osmania University as a Centre for pursuing research leading to the award of Ph.D. Degree in the Disciplines of CSE, ECE and Mechanical Engineering. In all about a 1000 students take admission per year. The college is one of the earliest of the private Engineering colleges in the state, and since inception, the college has ensured excellent and exemplary standards, which has helped the college to be one of the topmost andsought after colleges in the state..</p>
+    
+    <h2>Our Vision</h2>
+    <p>To impart technical education of the highest standards, producing technically competent, confident, and socially responsible engineers.</p>
+    
+    <h2>Our Mission</h2>
+    <ul class="mission-list">
+      <li>Provide fundamental technical and soft skills to students.</li>
+      <li>Make the learning process exciting, stimulating, and joyful.</li>
+      <li>Foster excellent teaching and learning processes.</li>
+      <li>Encourage creativity in students.</li>
+      <li>Contribute to advancements in engineering & technology.</li>
+      <li>Make positive contributions to societal needs.</li>
+    </ul>
+  
+    <p class="brochure-link">
+      <a href="https://drive.google.com/file/d/1X3WYCb6gBlR0qm7zqwBw33VuPhh_eoPe/view?usp=sharing" target="_blank">Click Here for College Brochure</a>
+    </p>
+    <p><a class="uk-button uk-button-info" href="/index.php?option=com_content&amp;view=article&amp;id=652&amp;Itemid=1230" target="_blank">Read more</a></p>
+  </div>
+  
+  
+
+
+  <div class="main_footer">
+    <div class="footer_section">
+      <h3>Academics</h3>
+      <ul>
+        <li><a href="nad.html">NAD</a></li>
+        <li><a href="industry.html">Industry Interaction Cell</a></li>
+        <li><a href="grie.html">Grievance Redressal</a></li>
+        <li><a href="fac.html">Facility</a></li>
+        <li><a href="nptel.html">NPTEL Local Chapter</a></li>
+        <li><a href="blogs.html">Blogs and Apps</a></li>
+        <li><a href="rev.html">Previous Question Papers</a></li>
+      </ul>
+    </div>
+  
+    <div class="footer_section">
+      <h3>Administration</h3>
+      <ul>
+        <li><a href="nad.html">Our Entrepreneurs</a></li>
+        <li><a href="industry.html">Campus Placements</a></li>
+        <li><a href="grie.html">Alumni Citation</a></li>
+        <li><a href="fac.html">Alumni Registration</a></li>
+        <li><a href="nptel.html">Hostel Facility</a></li>
+        <li><a href="blogs.html">Maintenance</a></li>
+        <li><a href="rev.html">Admin. Committees</a></li>
+      </ul>
+    </div>
+  
+    <div class="footer_section">
+      <h3>Rules & Procedures</h3>
+      <ul>
+        <li><a href="nad.html">Recruitment Procedure</a></li>
+        <li><a href="industry.html">Staff Rules & Regulations</a></li>
+        <li><a href="grie.html">Academic & Admin Duties</a></li>
+        <li><a href="fac.html">AICTE</a></li>
+        <li><a href="nptel.html">B.E Rules & Regulations</a></li>
+        <li><a href="blogs.html">Administration Sections</a></li>
+        <li><a href="rev.html">IIT-Spoken Tutorial MoU</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="map-section">
+    <!-- Google Map Section -->
+    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15238.794559558055!2d78.5385321!3d17.2818087!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x58c171967385349e!2sMaturi+Venkata+Subba+Rao+Engineering+College!5e0!3m2!1sen!2sin!4v1549976498537" frameborder="0" allowfullscreen></iframe>
+  
+    <!-- Rules & Procedures Section -->
+    <div class="footer1_section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="nad.html">NAD</a></li>
+        <li><a href="industry.html">AICTE</a></li>
+        <li><a href="grie.html">Feedback</a></li>
+        <li><a href="nptel.html">B.E Rules & Regulations</a></li>
+        <li><a href="blogs.html">Alumini</a></li>
+      </ul>
+    </div>
+  </div> 
+  <div class="footer">
+    About MVSR College: MVSR Engineering College offers various undergraduate and postgraduate programs in engineering and technology. Our mission is to provide quality education and promote innovation.<br>
+  &copyrights 2025,All Rights Reserved!
+  <div class="floor">
+    <h5>privacy policy</h5>
+    <h5>sitemap</h5>
+    <h5>terms of use</h5>
+  </div>
+  </div>
+
+  <script>
+    function navigate(page) {
+      window.location.href = page;
+    }
+
+    let slideIndex = 0;
+    const slides = document.getElementById('slideShow').children;
+
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex - 1].style.display = 'block';
+      setTimeout(showSlides, 3000);
+    }
+    showSlides();
+  </script>
+</body>
+</html>

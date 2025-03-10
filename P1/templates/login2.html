@@ -1,0 +1,590 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVSR Student Login</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+     /*
+      background: url('your-college-image.jpg') no-repeat center center/cover;
+     */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-wrapper {
+      display: flex;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      width: 800px;
+      max-width: 90%;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .image-section {
+      background: #f0f4f8;
+      width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .image-section img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .login-container {
+      padding: 5rem;
+      width: 30%;
+      height: auto;
+      text-align: center;
+      border: none;
+      font-size: 50px;
+      margin-top: 80px;
+      margin-right: 180px;
+      box-shadow: 2px 6px 9px rgb(115, 110, 110);
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    img#collegeLogo {
+      width: 100px;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    img#collegeLogo:hover {
+      transform: scale(1.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 18px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 40px;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-position 0.4s;
+      background-size: 200%;
+      font-size: larger;
+      margin: 18px 0;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    button:hover {
+      background-position: right;
+    }
+    .head_name{
+      margin-bottom: 200px;
+      display: flex;
+      display: block;
+      font-size: 50px;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-left: 40px;
+    }
+    .head_name img{
+      align-items: center;
+      margin-top: 50px;
+      width: 700px;
+      height: 700px;
+      margin-left: 400px;
+      border-radius: 20%;
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="head_name">
+  <h1>Maturi Venkata Subba Rao Engineering College<br>(MVSR)</h1>
+
+  <img src="mvsrlogo.png" alt="Student Illustration">
+
+</div>
+  
+<div class="login-container">
+  <h2>MVSR Student Login</h2>
+ 
+  
+ 
+  <input type="text" id="studentName" placeholder="Student Name" name="name" required>
+  <input type="text" id="rollNo" placeholder="Roll No (2451-xx-xxx-xxx)" pattern="\d{4}-\d{2}-\d{3}-\d{3}" name="rollno">
+ 
+  <select id="year" onchange="updateLogo()">
+ 
+ 
+    <select id="year" >
+    <option value="default" name="year" >Select Year</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+  <select id="branch" name="branch" required>
+    <option value="">Select Branch</option>
+    <option value="CSE">CSE</option>
+    <option value="IT">IT</option>
+    <option value="AIML">AIML</option>
+    <option value="IOT">IOT</option>
+    <option value="DS">DS</option>
+    <option value="ECE">ECE</option>
+    <option value="MECH">MECH</option>
+    <option value="EEE">EEE</option>
+    <option value="CIVIL">CIVIL</option>
+  </select>
+<input type="date" name="password" required id="password">
+  <button onclick="validateForm()" type="submit">Login</button>
+</div>
+</div>
+<form method="POST">
+{% csrf_token %}
+<input type="text" id="studentName" placeholder="Student Name" name="name" required>
+<input type="text" id="rollNo" placeholder="Roll No (2451-xx-xxx-xxx)" pattern="\d{4}-\d{2}-\d{3}-\d{3}" name="rollno">
+
+<select name="year" required>
+    <option value="">Select Year</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<select name="branch" required>
+    <option value="">Select Branch</option>
+    <option value="CSE">CSE</option>
+    <option value="IT">IT</option>
+    <option value="AIML">AIML</option>
+    <option value="IOT">IOT</option>
+    <option value="DS">DS</option>
+    <option value="ECE">ECE</option>
+    <option value="MECH">MECH</option>
+    <option value="EEE">EEE</option>
+    <option value="CIVIL">CIVIL</option>
+</select>
+
+<input type="date" name="password" required>
+
+<button type="submit">Login</button>
+
+{% if messages %}
+<script>
+    {% for message in messages %}
+        alert("{{ message }}");
+    {% endfor %}
+</script>
+{% endif %}
+</form>
+
+<script>
+function updateLogo() {
+  const year = document.getElementById('year').value;
+  const logo = document.getElementById('collegeLogo');
+  if (year !== 'default') {
+    logo.src ='Project\P1\templates\mvsrlogo.png';
+    logo.style.animation = 'pulse 0.6s ease';
+  } else {
+    logo.src = 'Project\P1\templates\mvsrlogo.png';
+  }
+}
+</body>
+</html>
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVSR Student Login</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-container {
+      padding: 5rem;
+      width: 30%;
+      height: auto;
+      text-align: center;
+      border: none;
+      font-size: 50px;
+      margin-top: 80px;
+      margin-right: 180px;
+      box-shadow: 2px 6px 9px rgb(115, 110, 110);
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 18px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 40px;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-position 0.4s;
+      background-size: 200%;
+      font-size: larger;
+      margin: 18px 0;
+    }
+
+    button:hover {
+      background-position: right;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>MVSR Student Login</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    
+    <input type="text" id="studentName" placeholder="Student Name" name="name" required>
+    <input type="text" id="rollNo" placeholder="Roll No (2451-xx-xxx-xxx)" pattern="\d{4}-\d{2}-\d{3}-\d{3}" name="rollno">
+    
+    <select name="year" required>
+      <option value="">Select Year</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <select name="branch" required>
+      <option value="">Select Branch</option>
+      <option value="CSE">CSE</option>
+      <option value="IT">IT</option>
+      <option value="AIML">AIML</option>
+      <option value="IOT">IOT</option>
+      <option value="DS">DS</option>
+      <option value="ECE">ECE</option>
+      <option value="MECH">MECH</option>
+      <option value="EEE">EEE</option>
+      <option value="CIVIL">CIVIL</option>
+    </select>
+
+
+    <select name="semester" required>
+      <option value="">Select Semester</option>
+      <option value="1">Semester 1</option>
+      <option value="2">Semester 2</option>
+      <option value="3">Semester 3</option>
+      <option value="4">Semester 4</option>
+      <option value="5">Semester 5</option>
+      <option value="6">Semester 6</option>
+      <option value="7">Semester 7</option>
+      <option value="8">Semester 8</option>
+    </select>
+
+    <input type="date" name="password" required>
+
+    <button type="submit">Login</button>
+
+    {% if messages %}
+      <script>
+        {% for message in messages %}
+          alert("{{ message }}");
+        {% endfor %}
+      </script>
+    {% endif %}
+  </form>
+</div>
+<script>
+function validateForm() {
+      const rollNoPattern = /^\d{4}-\d{2}-\d{3}-\d{3}$/;
+      const rollNo = document.getElementById('rollNo').value;
+      const password = document.getElementById('password').value;
+      const year = document.getElementById('year').value;
+
+      if (!rollNoPattern.test(rollNo)) {
+        alert('Invalid Roll Number Format! Example: 2451-xx-xxx-xxx');
+        return false;
+      }
+      if (password.trim() === '') {
+        alert('Password is required!');
+        return false;
+      }
+      if (year === 'default') {
+        alert('Please select your year!');
+        return false;
+      }
+// window.location.href = `dashboard.html?year=${year}`;
+
+    }
+  </script>
+
+</body>
+</html>
+
+
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MVSR Student Login</title>
+  <style>
+    body {
+     
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .login-wrapper {
+      display: flex;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      width: 500px;
+      max-width: 50%;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .image-section {
+      background: #ffffff;
+      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .image-section img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .xyz {
+      display: flex;
+      flex-direction: column;
+      padding: 2.8rem;
+      width: 40%;
+      height:500px ;
+      text-align: center;
+      border: none;
+      font-size: 25px;
+      margin-right: 50px;
+      margin-bottom: 40px;
+      margin-top: 40px;
+      box-shadow: 2px 6px 9px rgb(115, 110, 110);
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    input, select {
+      width: 80%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      font-size: 20px;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-position 0.4s;
+      background-size: 200%;
+      
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    button:hover {
+      background-position: right;
+    }
+    .head_name{
+      margin-top: 60px;
+      margin-bottom: 200px;
+      display: flex;
+      display: block;
+      font-size: 28px;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-left: 40px;
+    }
+   .head_name h1{
+    margin-bottom: 20px;
+    color: rgb(255, 0, 43);
+   }
+    .head_name img{
+      align-items: center;
+      margin-top: 70px;
+      width: 300px;
+      height: 300px;
+      margin-left: 200px;
+      border-radius: 20%;
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="head_name">
+    <h1>Maturi Venkata Subba Rao Engineering College<br>(MVSR)</h1>
+    </div>
+  
+  <form class="xyz" method="POST">
+      {% csrf_token %}
+    
+    <div class="login-container">
+      <h2>MVSR Student Login</h2>
+    <input type="text" id="rollNo" placeholder="Roll No (2451-xx-xxx-xxx)" pattern="\d{4}-\d{2}-\d{3}-\d{3}" name="rollno">
+    
+    <input type="date" name="password" required>
+
+    <button type="submit">Login</button>
+
+    </div>
+  </form>
+</div>
+
+  <script>
+
+
+    function validateForm() {
+      const rollNoPattern = /^\d{4}-\d{2}-\d{3}-\d{3}$/;
+      const rollNo = document.getElementById('rollNo').value;
+      const password = document.getElementById('password').value;
+      if (!rollNoPattern.test(rollNo)) {
+        alert('Invalid Roll Number Format! Example: 2451-xx-xxx-xxx');
+        return false;
+      }
+      if (password.trim() === '') {
+        alert('Password is required!');
+        return false;
+      }
+      
+    }
+  </script>
+  {% if messages %}
+  <script>
+    {% for message in messages %}
+      alert("{{ message }}");
+    {% endfor %}
+  </script>
+{% endif %}
+</body>
+</html>
